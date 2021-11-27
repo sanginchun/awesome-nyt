@@ -1,4 +1,4 @@
-import '../styles/index.scss';
+import './styles/index.scss';
 import { IconContext } from 'react-icons';
 
 import React from 'react';
