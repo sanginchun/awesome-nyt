@@ -25,3 +25,7 @@ interface Multimedia {
   width: number;
   height: number;
 }
+
+export interface BookmarkState {
+  [key: string]: { article: Article; bookmarkedAt: number };
+}
