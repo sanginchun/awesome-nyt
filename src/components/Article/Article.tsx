@@ -1,5 +1,9 @@
 import './Article.scss';
-import { RiBookmarkLine, RiBookmarkFill } from 'react-icons/ri';
+import {
+  RiBookmarkLine,
+  RiBookmarkFill,
+  RiErrorWarningLine,
+} from 'react-icons/ri';
 import React, { FC } from 'react';
 
 import { IArticle } from '../../types';
@@ -27,12 +31,17 @@ const Article: FC<ArticleProps> = (props) => {
       >
         {<BookmarkIcon size={24} color="#999" />}
       </button>
-      {thumbnail && (
+      {thumbnail ? (
         <img
           className="article__thumbnail"
           src={`${NYT_STATIC_BASE_URL}/${thumbnail}`}
           alt=""
         />
+      ) : (
+        <div className="article__thumbnail no-image">
+          <RiErrorWarningLine size={48} />
+          <p>No Image</p>
+        </div>
       )}
       <h2 className="article__title">{title}</h2>
       <p className="article__content">
