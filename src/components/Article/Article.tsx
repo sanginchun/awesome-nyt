@@ -1,32 +1,30 @@
 import './Article.scss';
 import { RiBookmarkLine, RiBookmarkFill } from 'react-icons/ri';
-import React, { FC, MouseEvent, useState } from 'react';
-import { observer } from 'mobx-react-lite';
-import bookmarkStore from '../../store/boomark';
+import React, { FC } from 'react';
 
 import { IArticle } from '../../types';
 import { NYT_STATIC_BASE_URL, MAX_CONTENT_LENGTH } from '../../config';
-import ConfirmModal from '../Modal/ConfirmModal';
 
-const Article: FC<IArticle> = (props) => {
-  const { id, url, title, content, thumbnail } = props;
-  const [modalOpen, setModalOpen] = useState(false);
-  const isBookmarked = !!bookmarkStore.state[id];
+type ArticleProps = {
+  article: IArticle;
+  isBookmarked: boolean;
+  onBookmarkClick: () => void;
+};
+
+const Article: FC<ArticleProps> = (props) => {
+  const { article, isBookmarked, onBookmarkClick } = props;
+  const { title, content, thumbnail } = article;
   const BookmarkIcon = isBookmarked ? RiBookmarkFill : RiBookmarkLine;
-
-  const handleButtonClick = (e: MouseEvent) => {
-    e.preventDefault();
-
-    if (isBookmarked) {
-      setModalOpen(true);
-    } else {
-      bookmarkStore.addBookmark({ id, title, content, thumbnail, url });
-    }
-  };
 
   return (
     <article className="article">
-      <button className="article__bookmark-btn" onClick={handleButtonClick}>
+      <button
+        className="article__bookmark-btn"
+        onClick={(e) => {
+          e.preventDefault();
+          onBookmarkClick();
+        }}
+      >
         {<BookmarkIcon size={24} color="#999" />}
       </button>
       {thumbnail && (
@@ -40,19 +38,8 @@ const Article: FC<IArticle> = (props) => {
       <p className="article__content">
         {content.slice(0, MAX_CONTENT_LENGTH) + ' ...more'}
       </p>
-      {modalOpen && (
-        <ConfirmModal
-          onConfirm={() => {
-            bookmarkStore.removeBookmark(id);
-            setModalOpen(false);
-          }}
-          close={() => setModalOpen(false)}
-        >
-          <p>즐겨찾기에서 삭제하시겠습니까?</p>
-        </ConfirmModal>
-      )}
     </article>
   );
 };
 
-export default observer(Article);
+export default Article;
