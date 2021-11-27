@@ -4,7 +4,7 @@ import { useArticles } from '../hooks/useArticles';
 
 const Home: FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { articles, loadMoreArticles } = useArticles(searchTerm);
+  const { articles, loadMoreArticles, canLoadMore } = useArticles(searchTerm);
 
   const Articles = articles.map(({ _id, headline, web_url }) => (
     <li key={_id}>
@@ -22,7 +22,7 @@ const Home: FC = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <ul>{Articles}</ul>
-      {articles.length ? (
+      {articles.length && canLoadMore ? (
         <button onClick={loadMoreArticles}>불러오기</button>
       ) : null}
     </section>

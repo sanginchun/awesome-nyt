@@ -7,24 +7,33 @@ import { debounce } from '../lib/debounce';
 
 export const useArticles = (searchTerm: string) => {
   const currentPage = useRef(0);
+  const totalPage = useRef(0);
   const [articles, setArticles] = useState<Article[]>([]);
 
   const initPosts = () => {
     if (searchTerm.length) {
       debounce(SEARCH_DEBOUNCE_SECONDS * 1000, () => {
         currentPage.current = 0;
-        searchArticles(searchTerm).then(setArticles);
+
+        searchArticles(searchTerm).then((data) => {
+          totalPage.current = data.totalPage;
+          setArticles(data.articles);
+        });
       });
     }
   };
 
   const loadMoreArticles = () => {
     searchArticles(searchTerm, ++currentPage.current).then((data) =>
-      setArticles([...articles, ...data])
+      setArticles([...articles, ...data.articles])
     );
   };
 
   useEffect(initPosts, [searchTerm]);
 
-  return { articles, loadMoreArticles };
+  return {
+    articles,
+    loadMoreArticles,
+    canLoadMore: currentPage.current < totalPage.current - 1,
+  };
 };
