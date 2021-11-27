@@ -16,7 +16,7 @@ const Home: FC = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search for Articles ..."
       />
-      <ArticleList articles={articles} />
+      <ArticleList articles={articles} shouldConfirmRemoveBookmark={false} />
       {articles.length && canLoadMore ? (
         <LoadButton onClick={loadMoreArticles} />
       ) : null}

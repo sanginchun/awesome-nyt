@@ -11,7 +11,14 @@ const Bookmarks: FC = () => {
     .sort((a, b) => b.bookmarkedAt - a.bookmarkedAt)
     .map(({ article }) => article);
 
-  return <section>{<ArticleList articles={sortedArticles} />}</section>;
+  return (
+    <section>
+      <ArticleList
+        articles={sortedArticles}
+        shouldConfirmRemoveBookmark={true}
+      />
+    </section>
+  );
 };
 
 export default observer(Bookmarks);
