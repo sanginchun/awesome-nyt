@@ -2,8 +2,8 @@ import './App.scss';
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-import Home from '../pages/Home';
-import Bookmarks from '../pages/Bookmarks';
+import Home from '../routes/Home';
+import Bookmarks from '../routes/Bookmarks';
 
 const App: FC = () => {
   return (
