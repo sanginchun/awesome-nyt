@@ -1,11 +1,11 @@
 import React, { FC, useState } from 'react';
-import { useArticles } from '../hooks/useArticles';
+import { useArticles } from '../../hooks/useArticles';
 
-import ArticleList from '../components/ArticleList/ArticleList';
-import SearchBar from '../components/SearchBar/SearchBar';
-import LoadButton from '../components/LoadButton/LoadButton';
+import ArticleList from '../ArticleList/ArticleList';
+import SearchBar from '../SearchBar/SearchBar';
+import LoadButton from '../LoadButton/LoadButton';
 
-import searchTermStore from '../store/searchTerm';
+import searchTermStore from '../../store/searchTerm';
 
 const Home: FC = () => {
   const [searchTerm, setSearchTerm] = useState(searchTermStore.state);

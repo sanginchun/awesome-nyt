@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
-
-import bookmarkStore from '../store/boomark';
-import { observer } from 'mobx-react-lite';
-
-import ArticleList from '../components/ArticleList/ArticleList';
+import bookmarkStore from '../../store/boomark';
+import ArticleList from '../ArticleList/ArticleList';
 
 const Bookmarks: FC = () => {
   const { state: bookmarkedArticles } = bookmarkStore;
@@ -21,4 +18,4 @@ const Bookmarks: FC = () => {
   );
 };
 
-export default observer(Bookmarks);
+export default Bookmarks;
