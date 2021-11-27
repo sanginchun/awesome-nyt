@@ -10,7 +10,7 @@ export interface NYTimesResponse<T> {
   };
 }
 
-export interface Article {
+export interface ArticleResponse {
   _id: string;
   web_url: string;
   lead_paragraph: string;
@@ -18,12 +18,20 @@ export interface Article {
   multimedia: Multimedia[];
 }
 
-interface Multimedia {
+export interface Multimedia {
   subtype: string;
   url: string;
   type: string;
   width: number;
   height: number;
+}
+
+export interface Article {
+  id: string;
+  url: string;
+  title: string;
+  content: string;
+  thumbnail?: string;
 }
 
 export interface BookmarkState {

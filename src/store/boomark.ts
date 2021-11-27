@@ -15,7 +15,7 @@ class Bookmark {
   }
 
   addBookmark(article: Article) {
-    this.state[article._id] = { article, bookmarkedAt: Date.now() };
+    this.state[article.id] = { article, bookmarkedAt: Date.now() };
   }
 
   removeBookmark(id: string) {

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import boomarkStore from '../store/boomark';
 import { observer } from 'mobx-react-lite';
 
@@ -12,12 +13,12 @@ const Bookmarks: FC = () => {
     <section>
       <ul>
         {sorted.map(({ article }) => (
-          <li key={article._id}>
-            <a href={article.web_url} target="_blank">
-              {article.headline.main}
+          <li key={article.id}>
+            <a href={article.url} target="_blank">
+              {article.title}
             </a>
-            {bookmarkedArticles[article._id] ? (
-              <button onClick={() => boomarkStore.removeBookmark(article._id)}>
+            {bookmarkedArticles[article.id] ? (
+              <button onClick={() => boomarkStore.removeBookmark(article.id)}>
                 즐겨 찾기 취소
               </button>
             ) : (
