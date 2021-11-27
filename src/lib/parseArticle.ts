@@ -1,7 +1,7 @@
-import { ArticleResponse, Article, Multimedia } from '../types';
+import { ArticleResponse, IArticle, Multimedia } from '../types';
 import { MIN_THUMBNAIL_WIDTH } from '../config';
 
-export const parseArticle = (response: ArticleResponse): Article => {
+export const parseArticle = (response: ArticleResponse): IArticle => {
   const { _id, web_url, lead_paragraph, headline, multimedia } = response;
 
   return {

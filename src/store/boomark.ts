@@ -1,5 +1,5 @@
 import { autorun, makeAutoObservable } from 'mobx';
-import { Article, BookmarkState } from '../types';
+import { IArticle, BookmarkState } from '../types';
 import { BOOKMARK_STATE_KEY } from '../config';
 import { getLocalStorage } from '../localStorage';
 
@@ -14,7 +14,7 @@ class Bookmark {
     );
   }
 
-  addBookmark(article: Article) {
+  addBookmark(article: IArticle) {
     this.state[article.id] = { article, bookmarkedAt: Date.now() };
   }
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Article } from '../types';
+import { IArticle } from '../types';
 import { searchArticles } from '../api/NYTimes';
 import { SEARCH_DEBOUNCE_SECONDS } from '../config';
 import { debounce } from '../lib/debounce';
@@ -8,7 +8,7 @@ import { debounce } from '../lib/debounce';
 export const useArticles = (searchTerm: string) => {
   const currentPage = useRef(0);
   const totalPage = useRef(0);
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<IArticle[]>([]);
 
   const initPosts = () => {
     if (searchTerm.length) {

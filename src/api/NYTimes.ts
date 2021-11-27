@@ -1,5 +1,5 @@
 import { NYT_API_BASE_URL, NYT_API_KEY } from '../config';
-import { NYTimesResponse, Article, ArticleResponse } from '../types';
+import { NYTimesResponse, IArticle, ArticleResponse } from '../types';
 import { parseArticle } from '../lib/parseArticle';
 
 const RESULT_PER_REQUEST = 10;
@@ -7,7 +7,7 @@ const RESULT_PER_REQUEST = 10;
 export async function searchArticles(
   searchTerm: string,
   page = 0
-): Promise<{ articles: Article[]; totalPage: number }> {
+): Promise<{ articles: IArticle[]; totalPage: number }> {
   const response = await fetch(
     `${NYT_API_BASE_URL}/articlesearch.json?q=${searchTerm}&page=${page}&api-key=${NYT_API_KEY}`
   );

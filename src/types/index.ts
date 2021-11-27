@@ -26,7 +26,7 @@ export interface Multimedia {
   height: number;
 }
 
-export interface Article {
+export interface IArticle {
   id: string;
   url: string;
   title: string;
@@ -35,5 +35,5 @@ export interface Article {
 }
 
 export interface BookmarkState {
-  [key: string]: { article: Article; bookmarkedAt: number };
+  [key: string]: { article: IArticle; bookmarkedAt: number };
 }
