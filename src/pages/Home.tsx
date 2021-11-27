@@ -1,6 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
-import { searchArticles } from '../api/NYTimes';
 import { Article } from '../types';
+
+import { searchArticles } from '../api/NYTimes';
+import { SEARCH_DEBOUNCE_SECONDS } from '../config';
+import { debounce } from '../lib/debounce';
 
 const Home: FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,7 +19,9 @@ const Home: FC = () => {
 
   useEffect(() => {
     if (searchTerm.length) {
-      searchArticles(searchTerm).then(setArticles);
+      debounce(SEARCH_DEBOUNCE_SECONDS * 1000, () =>
+        searchArticles(searchTerm).then(setArticles)
+      );
     }
   }, [searchTerm]);
 
