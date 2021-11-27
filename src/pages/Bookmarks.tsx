@@ -3,27 +3,15 @@ import React, { FC } from 'react';
 import bookmarkStore from '../store/boomark';
 import { observer } from 'mobx-react-lite';
 
-import Article from '../components/Article/Article';
+import ArticleList from '../components/ArticleList/ArticleList';
 
 const Bookmarks: FC = () => {
   const { state: bookmarkedArticles } = bookmarkStore;
-  const sorted = Array.from(Object.values(bookmarkedArticles)).sort(
-    (a, b) => b.bookmarkedAt - a.bookmarkedAt
-  );
+  const sortedArticles = Array.from(Object.values(bookmarkedArticles))
+    .sort((a, b) => b.bookmarkedAt - a.bookmarkedAt)
+    .map(({ article }) => article);
 
-  const ArticlesListItems = sorted.map(({ article }) => (
-    <li key={article.id}>
-      <a href={article.url} target="_blank">
-        <Article {...article} />
-      </a>
-    </li>
-  ));
-
-  return (
-    <section>
-      <ul className="main-grid">{ArticlesListItems}</ul>
-    </section>
-  );
+  return <section>{<ArticleList articles={sortedArticles} />}</section>;
 };
 
 export default observer(Bookmarks);
