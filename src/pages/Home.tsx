@@ -1,15 +1,11 @@
 import React, { FC, useState } from 'react';
 import { useArticles } from '../hooks/useArticles';
 
-import { observer } from 'mobx-react-lite';
-// import boomarkStore from '../store/boomark';
-
 import Article from '../components/Article/Article';
 
 const Home: FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { articles, loadMoreArticles, canLoadMore } = useArticles(searchTerm);
-  // const { state: bookmarkedArticles } = boomarkStore;
 
   const ArticlesListItems = articles.map((article) => (
     <li key={article.id}>
@@ -34,4 +30,4 @@ const Home: FC = () => {
   );
 };
 
-export default observer(Home);
+export default Home;

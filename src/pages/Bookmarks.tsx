@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 
-import boomarkStore from '../store/boomark';
+import bookmarkStore from '../store/boomark';
 import { observer } from 'mobx-react-lite';
 
 import Article from '../components/Article/Article';
 
 const Bookmarks: FC = () => {
-  const { state: bookmarkedArticles } = boomarkStore;
+  const { state: bookmarkedArticles } = bookmarkStore;
   const sorted = Array.from(Object.values(bookmarkedArticles)).sort(
     (a, b) => b.bookmarkedAt - a.bookmarkedAt
   );
