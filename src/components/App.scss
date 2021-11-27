@@ -1,3 +1,5 @@
+@import '../styles/mixins';
+
 * {
   font-family: 'Roboto', sans-serif;
 }
@@ -17,7 +19,7 @@
   padding: 0 1rem;
 
   & > * {
-    margin-right: 2rem;
+    margin: 0 1rem;
   }
 }
 
@@ -28,4 +30,40 @@
 
 .react-icons {
   vertical-align: middle;
+}
+
+@include mq-x-large {
+  .container {
+    padding: 0 4%;
+  }
+}
+
+@include mq-medium {
+  .main-header {
+    flex-direction: column;
+  }
+
+  .main-nav {
+    margin-top: 1rem;
+  }
+
+  .container {
+    padding: 0 6%;
+  }
+}
+
+@include mq-mobile {
+  html {
+    font-size: 14px;
+  }
+
+  .main-header {
+    & .logo {
+      font-size: 1.5rem;
+    }
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
 }

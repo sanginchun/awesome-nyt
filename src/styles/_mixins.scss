@@ -1,0 +1,25 @@
+@import './variables';
+
+@mixin mq-x-large {
+  @media screen and (max-width: $breakpoint-x-large) {
+    @content;
+  }
+}
+
+@mixin mq-large {
+  @media screen and (max-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+@mixin mq-medium {
+  @media screen and (max-width: $breakpoint-medium) {
+    @content;
+  }
+}
+
+@mixin mq-mobile {
+  @media screen and (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
