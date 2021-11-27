@@ -11,10 +11,16 @@ const Bookmarks: FC = () => {
 
   return (
     <section>
-      <ArticleList
-        articles={sortedArticles}
-        shouldConfirmRemoveBookmark={true}
-      />
+      {sortedArticles.length ? (
+        <ArticleList
+          articles={sortedArticles}
+          shouldConfirmRemoveBookmark={true}
+        />
+      ) : (
+        <p style={{ marginTop: '3rem', textAlign: 'center' }}>
+          아직 즐겨찾기한 기사가 없습니다
+        </p>
+      )}
     </section>
   );
 };
