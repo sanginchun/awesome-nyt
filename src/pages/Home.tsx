@@ -1,3 +1,4 @@
+import './Home.scss';
 import React, { FC, useState } from 'react';
 import { useArticles } from '../hooks/useArticles';
 
@@ -16,11 +17,13 @@ const Home: FC = () => {
   ));
 
   return (
-    <section>
+    <section className="home">
       <input
+        className="home__search-bar"
         type="search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search for Articles ..."
       />
       <ul>{ArticlesListItems}</ul>
       {articles.length && canLoadMore ? (
