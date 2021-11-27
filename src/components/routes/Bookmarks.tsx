@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { observer } from 'mobx-react-lite';
 import bookmarkStore from '../../store/boomark';
 import ArticleList from '../ArticleList/ArticleList';
 
@@ -18,4 +19,4 @@ const Bookmarks: FC = () => {
   );
 };
 
-export default Bookmarks;
+export default observer(Bookmarks);
