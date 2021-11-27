@@ -1,13 +1,10 @@
-import React, { FC, useEffect, useState } from 'react';
-import { Article } from '../types';
+import React, { FC, useState } from 'react';
 
-import { searchArticles } from '../api/NYTimes';
-import { SEARCH_DEBOUNCE_SECONDS } from '../config';
-import { debounce } from '../lib/debounce';
+import { useArticles } from '../hooks/useArticles';
 
 const Home: FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [articles, setArticles] = useState<Article[]>([]);
+  const { articles, loadMoreArticles } = useArticles(searchTerm);
 
   const Articles = articles.map(({ _id, headline, web_url }) => (
     <li key={_id}>
@@ -17,14 +14,6 @@ const Home: FC = () => {
     </li>
   ));
 
-  useEffect(() => {
-    if (searchTerm.length) {
-      debounce(SEARCH_DEBOUNCE_SECONDS * 1000, () =>
-        searchArticles(searchTerm).then(setArticles)
-      );
-    }
-  }, [searchTerm]);
-
   return (
     <section>
       <input
@@ -33,6 +22,9 @@ const Home: FC = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <ul>{Articles}</ul>
+      {articles.length ? (
+        <button onClick={loadMoreArticles}>불러오기</button>
+      ) : null}
     </section>
   );
 };
