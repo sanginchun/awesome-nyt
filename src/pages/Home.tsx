@@ -18,9 +18,7 @@ const Home: FC = () => {
       />
       <ArticleList articles={articles} />
       {articles.length && canLoadMore ? (
-        <button className="load-btn" onClick={loadMoreArticles}>
-          불러오기
-        </button>
+        <LoadButton onClick={loadMoreArticles} />
       ) : null}
     </section>
   );
