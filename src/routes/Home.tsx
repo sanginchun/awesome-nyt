@@ -5,8 +5,10 @@ import ArticleList from '../components/ArticleList/ArticleList';
 import SearchBar from '../components/SearchBar/SearchBar';
 import LoadButton from '../components/LoadButton/LoadButton';
 
+import searchTermStore from '../store/searchTerm';
+
 const Home: FC = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(searchTermStore.state);
   const { articles, loadMoreArticles, canLoadMore } = useArticles(searchTerm);
 
   return (
