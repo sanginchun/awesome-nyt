@@ -25,10 +25,14 @@ const Home: FC = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search for Articles ..."
       />
-      <ul className="main-grid">{ArticlesListItems}</ul>
-      {articles.length && canLoadMore ? (
-        <button onClick={loadMoreArticles}>불러오기</button>
-      ) : null}
+      <ul className="main-grid">
+        {ArticlesListItems}{' '}
+        {articles.length && canLoadMore ? (
+          <button className="load-btn" onClick={loadMoreArticles}>
+            불러오기
+          </button>
+        ) : null}
+      </ul>
     </section>
   );
 };
