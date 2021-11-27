@@ -21,7 +21,7 @@ const Bookmarks: FC = () => {
 
   return (
     <section>
-      <ul>{ArticlesListItems}</ul>
+      <ul className="main-grid">{ArticlesListItems}</ul>
     </section>
   );
 };
